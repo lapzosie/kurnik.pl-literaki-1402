@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Literaki - kurnik.pl</title>
+
+<style>
+body {
+    margin: 0;
+    background: #7fb3d5;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+.screen {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Niewidzialny przycisk #2 */
+#clickZone {
+    position: absolute;
+    top: 27%;
+    right: 5%;
+    width: 35%;
+    height: 12%;
+    cursor: pointer;
+}
+
+/* Laurka */
+#card {
+    display: none;
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    right: 5%;
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    max-height: 80vh;
+    overflow-y: auto;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Serduszka */
+.heart {
+    position: fixed;
+    top: -10px;
+    font-size: 20px;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="screen">
+    <img id="mainImage" src="kurnik.jpg">
+    <div id="clickZone"></div>
+</div>
+
+<div id="card">
+Dear John,<br><br>
+
+Widzieć ciebie już dawno okazji nie miałam,<br>
+Lecz nie myśl, że o tobie kiedyś zapomniałam.<br>
+Obiecałam uprzednio me przyszłe orędzie,<br>
+Że trzynastozgłoskowcem napisane będzie.<br>
+Słowa więc dotrzymuję, a oto co czuję:<br><br>
+
+Tyś mi niczym ostatni wałek w Lidlu ciasta,<br>
+Niczym najjaśniejsza i najdroższa niewiasta.<br>
+Ciebie pragnę jak znaleźć ów puzzel Adama,<br>
+Twój anturaż cudowny, aż dziwię się sama.<br>
+Porównywalna być może w just dance wygrana,<br>
+Próbują też dorównać pyszne tosty z rana,<br>
+Lecz taka konkurencja z góry jest stracona,<br>
+Wszak by z tobą się równać to rzecz niestworzona.<br><br>
+
+Ta długa rozłąka mi wcale nie służyła,<br>
+Każdej nocy godzina samotnie dłużyła.<br>
+Zasię nie te momenty są najtrudniejszymi,<br>
+Ale te z mi miłymi spędzone bliskimi.<br>
+Ajuści wtedy twój brak rzewliwie doskwiera,<br>
+Z tęsknoty umyka ma radosna maniera.<br>
+Z tobą szczęśliwszy jest każdy krótki moment,<br>
+Czy nuże oszalałam? Odpowiem 'no comment'.<br><br>
+
+Jednak trudom już wkrótce kres czas jest położyć,<br>
+Za dni cztery przyjdzie nam razem na powrót pożyć.<br>
+Znowu więc do spotkania wszczynam odliczanie,<br>
+Los mozolny, lecz warty - na ciebie czekanie.<br><br>
+
+~ Zofieńka ❤️
+</div>
+
+<script>
+let step = 1;
+
+document.getElementById("clickZone").addEventListener("click", function() {
+    if(step === 1){
+        document.getElementById("mainImage").src = "Pudzianjpg.jpg";
+        step = 2;
+    } else {
+        showHearts();
+        setTimeout(() => {
+            document.getElementById("card").style.display = "block";
+        }, 1500);
+    }
+});
+
+function showHearts(){
+    for(let i=0;i<30;i++){
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random()*100 + "vw";
+        heart.style.fontSize = (Math.random()*20+15) + "px";
+        heart.style.animationDuration = (Math.random()*2+2) + "s";
+        document.body.appendChild(heart);
+        setTimeout(()=>heart.remove(),4000);
+    }
+}
+</script>
+
+</body>
+</html>
